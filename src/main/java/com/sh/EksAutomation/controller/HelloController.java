@@ -10,6 +10,6 @@ public class HelloController {
 
     @GetMapping("/test")
     public String home() {
-        return "Hello from EksAutomation test";
+        return "Hello from EksAutomation test AWS deployment";
     }
 }
