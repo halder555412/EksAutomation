@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: EksAutomation
+
+server:
+  port: 9000
