@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eks-automation
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: eks-automation
+  template:
+    metadata:
+      labels:
+        app: eks-automation
+    spec:
+      containers:
+        - name: eks-automation
+          image: 480552287204.dkr.ecr.eu-north-1.amazonaws.com/eks-automation:latest
+          ports:
+            - containerPort: 9000
