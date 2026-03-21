@@ -23,6 +23,10 @@ jobs:
 
       - name: Build Docker Image
         run: docker build -t eks-automation .
+      - name: Run Docker Container
+        run: docker run -p 9000:9000 eks-automation
+
+
 
 #      - name: Configure AWS Credentials
 #        uses: aws-actions/configure-aws-credentials@v2
