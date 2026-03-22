@@ -22,24 +22,37 @@ jobs:
         run: mvn clean package
 
       - name: Build Docker Image
-        run: docker build -t eks-automation .
-
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: eu-north-1
-
-      - name: Login to ECR
         run: |
-          aws ecr get-login-password --region eu-north-1 | \
-          docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.eu-north-1.amazonaws.com
+            docker build -t ${{ secrets.DOCKER_USERNAME }}/eks-automation:latest .
+#            docker tag ${{ secrets.DOCKER_USERNAME }}/eks-automation:${{ github.run_number }} ${{ secrets.DOCKER_USERNAME }}/eks-automation:latest
 
-      - name: Tag Image
-        run: |
-          docker tag eks-automation:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.eu-north-1.amazonaws.com/eks-automation:latest
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Push Image
         run: |
-          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.eu-north-1.amazonaws.com/eks-automation:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/eks-automation:latest
+#          docker push ${{ secrets.DOCKER_USERNAME }}/eks-automation:latest
+
+#      - name: Build Docker Image
+#        run: docker build -t eks-automation .
+
+#      - name: Configure AWS Credentials
+#        uses: aws-actions/configure-aws-credentials@v2
+#        with:
+#          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+#          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+#          aws-region: eu-north-1
+#
+#      - name: Login to ECR
+#        run: |
+#          aws ecr get-login-password --region eu-north-1 | \
+#          docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.eu-north-1.amazonaws.com
+#
+#      - name: Tag Image
+#        run: |
+#          docker tag eks-automation:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.eu-north-1.amazonaws.com/eks-automation:latest
+#
+#      - name: Push Image
+#        run: |
+#          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.eu-north-1.amazonaws.com/eks-automation:latest
