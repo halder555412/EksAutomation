@@ -21,7 +21,7 @@ jobs:
 
       - name: Install mvnd
         run: |
-          wget https://github.com/apache/maven-mvnd/releases/download/v1.0.5/maven-mvnd-1.0.5-windows-amd64.zip
+          https://dlcdn.apache.org/maven/mvnd/1.0.5/maven-mvnd-1.0.5-windows-amd64.zip
           unzip maven-mvnd-1.0.5-windows-amd64.zip -d $HOME/mvnd
           export PATH=$HOME/mvnd/maven-mvnd-1.0.5-windows-amd64/bin:$PATH
 
