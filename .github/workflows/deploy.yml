@@ -19,12 +19,6 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Install mvnd
-        run: |
-          https://dlcdn.apache.org/maven/mvnd/1.0.5/maven-mvnd-1.0.5-windows-amd64.zip
-          unzip maven-mvnd-1.0.5-windows-amd64.zip -d $HOME/mvnd
-          export PATH=$HOME/mvnd/maven-mvnd-1.0.5-windows-amd64/bin:$PATH
-
       - name: Build JAR
         run: mvnd clean package -DskipTests
 
