@@ -10,6 +10,6 @@ public class HelloController {
 
     @GetMapping("/test")
     public String home() {
-        return "Hello from EksAutomation test AWS deployment after changing the port 30007";
+        return "Hello from EksAutomation test AWS deployment after changing the port 30007 deleted";
     }
 }
