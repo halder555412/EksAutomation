@@ -22,7 +22,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: demo-app
+  name: eks-automation
 
 spec:
   replicas: 2
