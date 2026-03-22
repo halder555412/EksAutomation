@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
         - name: eks-automation
-          image: sajal555412/eks-automation:${{ github.run_number }}
+          image: ${{secrets.DOCKER_USERNAME}}/eks-automation:${{ github.run_number }}
           imagePullPolicy: Always
           ports:
             - containerPort: 9000

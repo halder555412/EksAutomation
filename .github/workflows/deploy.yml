@@ -26,7 +26,7 @@ jobs:
       - name: Build Docker Image
         run: |
 #            docker build -t ${{secrets.DOCKER_USERNAME}}/eks-automation:latest .
-            docker build -t sajal555412/eks-automation:${{ github.run_number }} .
+            docker build -t ${{secrets.DOCKER_USERNAME}}/eks-automation:${{ github.run_number }} .
 #            docker tag ${{ secrets.DOCKER_USERNAME }}/eks-automation:${{ github.run_number }} ${{ secrets.DOCKER_USERNAME }}/eks-automation:latest
 
       - name: Debug secrets
@@ -48,7 +48,7 @@ jobs:
 
       - name: Push Image
         run: |
-          docker push sajal555412/eks-automation:${{ github.run_number }}
+          docker push ${{secrets.DOCKER_USERNAME}}/eks-automation:${{ github.run_number }}
 #          docker push ${{ secrets.DOCKER_USERNAME }}/eks-automation:latest
 
       - name: Deploy to Kubernetes
