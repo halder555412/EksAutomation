@@ -6,7 +6,8 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+#    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout Code
@@ -32,6 +33,11 @@ jobs:
       - name: Push Image
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/eks-automation:latest
+
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl apply -f deployment.yaml
+          kubectl apply -f service.yaml
 #          docker push ${{ secrets.DOCKER_USERNAME }}/eks-automation:latest
 
 #      - name: Build Docker Image
